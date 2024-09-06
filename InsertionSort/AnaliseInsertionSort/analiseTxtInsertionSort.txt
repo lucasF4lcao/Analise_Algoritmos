@@ -1,0 +1,123 @@
+==================================================================================================================================================================================================
+Melhor Caso:
+
+O custo será o número de comparações.
+
+function insertionSort(arr) {			custo		vezes			subtotal		Total: n + 2n - 2 = 3n - 2 --> O(n)
+1.  for (var i = 1; i < arr.length; i++) {	1		n			1*n
+2.    var key = arr[i]				0		
+3.    var j = i - 1				0		
+4.    while (j >= 0 && arr[j] > key) {		2		n-1			2*(n-1)
+5.      arr[j + 1] = arr[j]			0
+6.      j--}					0
+7.    arr[j + 1] = key}				0
+8.  return arr}					0
+
+
+Análise de execução:
+
+ Início:					linha 1 executou?	linha 4 executou?	Total linha 1: 4 = n	Total linha 4: 3 = n - 1
+	[1,	2,	3,	4]		sim			não
+	j=0    i=1
+       	       key
+
+ 2 > 1 e i < 4, então:
+	[1,	2,	3,	4]		sim			sim
+	       j=1     i=2
+       	               key
+
+ 3 > 2 e i < 4, então:
+	[1,	2,	3,	4]		sim			sim
+	               j=2     i=3
+       	                       key
+
+ 4 > 3 e i = 4, então:
+	[1,	2,	3,	4]		sim			sim
+
+
+ Fim.
+
+==================================================================================================================================================================================================
+Pior Caso:
+
+O custo será o número de comparações.
+
+function insertionSort(arr) {			custo		vezes			subtotal		Total: n + 2*(((n^2+n)/2)-1) = n + n^2 + n - 2 = n^2 + 2n - 2 --> O(n^2)
+1.  for (var i = 1; i < arr.length; i++) {	1		n			1*n
+2.    var key = arr[i]				0		
+3.    var j = i - 1				0		
+4.    while (j >= 0 && arr[j] > key) {		2		(n(n-1)/2)-1		2*((n(n-1)/2) - 1)
+5.      arr[j + 1] = arr[j]			0
+6.      j--}					0
+7.    arr[j + 1] = key}				0
+8.  return arr}					0
+
+
+Análise de execução:
+
+ Início:					linha 1 executou?	linha 4 executou?	Total linha 1: 4 = n	Total linha 4: 2 + 3 + 4 = 9 = 2 + 3 + ... + n = (n(n+1)/2) - 1
+	[4,	3,	2,	1]		sim			não
+	j=0    i=1
+       	       key
+
+ 3 < 4, então:
+	[4,	4,	2,	1] 		não			sim
+ j=-1  i=j+1    |
+	      key=3
+
+ j < 0, então:
+	[3,	4,	2,	1]		não			sim	
+      j+1=key
+	
+
+ i < 4, então:
+	[3,	4,	2,	1]		sim			não
+	       j=1     i=2
+       	       	       key
+
+ 2 < 4, então:
+	[3,	4,	4,	1] 		não			sim
+ 	j=0   i=j+1     |
+	      	      key=2
+ 
+ j > 0 e 3 > 2, então:
+	[3,	3,	4,	1] 		não			sim
+ j=-1  i=j+1    	|
+	      	      key=2
+
+ j < 0, então:
+	[2,	3,	4,	1]		não			sim
+      j+1=key
+
+
+ i < 4, então:
+	[2,	3,	4,	1]		sim			não
+	 	       j=2     i=3
+			       key
+
+ 1 < 4, então:
+	[2,	3,	4,	4] 		não			sim
+ 	       j=1    i=j+1     |
+	      	              key=1
+
+ j > 0 e 3 > 1, então:
+	[2,	3,	3,	4] 		não			sim
+        j=0   i=j+1    	        |
+	      	              key=1
+
+ j > 0 e 2 > 1, então:
+	[2,	2,	3,	4] 		não			sim
+ j=-1  i=j+1    	        |
+	      	              key=1
+
+ j < 0, então:
+	[1,	2,	3,	4]		não			sim
+      j+1=key
+
+
+ i = 4, então: 
+	[1,	2,	3,	4]		sim			não
+
+
+ Fim.
+==================================================================================================================================================================================================

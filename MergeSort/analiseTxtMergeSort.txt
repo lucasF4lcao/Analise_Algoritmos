@@ -1,0 +1,34 @@
+==============================================================================================================================
+
+1. function mergeSort(arr, esquerda, direita) {				T(n)
+2.   if (esquerda < direita) {						c
+3.     const meio = Math.floor((esquerda + direita) / 2);		c
+4.     mergeSort(arr, esquerda, meio);					T(n/2)
+5.     mergeSort(arr, meio + 1, direita);				T(n/2)
+6.     merge(arr, esquerda, meio, direita);}}				cn
+
+
+	T(n) = 2T(n/2) + cn
+
+
+A análise será feita pela árvore de recursão:
+
+
+	T(n) -->  cn		         cn		                  cn  - - - - - - - - - cn	
+		 /  \	              /      \			        /    \
+	    T(n/2)  T(n/2) -->   cn/2          cn/2		    cn/2      cn/2  - - - - - - cn
+			        /    \        /    \		    /  \      /  \
+			    T(n/4)  T(n/4) T(n/4)  T(n/4) -->    cn/4  cn/4 cn/4  cn/4  - - - - cn
+									  ...
+              			      				 /  \ ... /  \ ... /  \	     
+	         						c    c	 c    c   c    c  - - - cn	
+
+T(n) = cn * numNiveis
+ |
+ |----- n --> n/2 --> n/4 ... 1 = n/2^0 --> n/2^1 --> n/2^2 ... n/2^h = log2 n = logn
+ |
+ |----- T(n) = cn(logn + 1) 
+	     = cnlogn + cn
+	     = O(nlogn)
+
+==============================================================================================================================
